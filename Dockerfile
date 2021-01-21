@@ -1,9 +1,8 @@
-FROM python:3.6.6-alpine3.7
+FROM python:3.6.6
 
-RUN apk add --update \
-    build-base libffi-dev openssl-dev \
-    xmlsec xmlsec-dev \
-  && rm -rf /var/cache/apk/*
+RUN apt-get install build-essential libssl-dev libffi-dev python3-dev
+
+RUN pip install cryptography
 
 ADD requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
